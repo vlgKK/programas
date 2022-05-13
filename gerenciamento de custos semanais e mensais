@@ -1,0 +1,59 @@
+#gerenciamento de custos semanais e mensais#
+import os
+list=[]
+escolha=6
+
+
+while escolha!=5:
+    print("\n\tMENU\n\t")
+    print("\n\t1-Adicionar ingredientes\n\t2-ver ingredientes\n\t3-Preço dos ingredientes\n\t4-Gasto Mensal e Semanal\n\t5-sair")
+    escolha=input("escolha uma opcao: ")
+    while escolha>"5":
+        print("numero invalido, digite algo valido")
+        escolha=input("escolha uma opcao: ")
+
+
+    if escolha=="5":
+        os.system('cls')
+        exit()
+    
+    elif escolha=="1":
+        ingrediente=input("informe o ingrediente que deseja adicionar: ")
+        quantidade=input("informe a quantidade que deseja adicionar")
+        list.append(["",ingrediente,quantidade,0])
+
+    elif escolha=="2":
+        print("\n\tVer ingredientes.....\n\t")
+        contador=0
+        for ingrediente in list:
+            print(contador,"#",ingrediente[0],ingrediente[1],ingrediente[2])
+            contador=contador+1
+            
+    elif escolha=="3":
+        print("Preço dos ingredientes....")
+
+        posicao=input("digite a posição do produto que deseja adicionar preco: ")
+        posicao_int=int(posicao)
+        preco=input("digite o preco do "+list[posicao_int][1]+":")
+        list[posicao_int][0]="OK"
+        list[posicao_int][3]=preco
+
+ 
+
+    elif escolha=="4":
+        contador=0
+        precototal=0
+        precosema=0
+        precomes=0
+        for ingrediente in list:
+
+            if ingrediente[0]=="OK":
+                print(contador,"#",ingrediente[0]," ",ingrediente[1],"-",ingrediente[2], "R$",ingrediente[3])
+                contador=contador+1
+                precototal=precototal+int(ingrediente[2])*float(ingrediente[3])
+                precosema=precototal*7
+                precomes=precototal*30
+
+            print("Preco Total: ",precototal)
+            print("Preco semanal: ",precosema)
+            print("Preco mensal: ",precomes)
